@@ -2,11 +2,11 @@
   "name": "mirror",
   "version": "0.0.1",
   "description": "lib for array",
-  "main": "./src/index.ts",
+  "main": "./dest/index.js",
   "scripts": {
     "test": "mocha -r ts-node/register test/**/*.ts",
     "rimraf": "./node_modules/rimraf/bin.js",
-    "clean": "rimraf ./dist/*",
+    "clean": "rimraf ./dest/*",
     "compile": "npm run clean && tsc -p ./"
   },
   "repository": {

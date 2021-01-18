@@ -1,0 +1,35 @@
+{
+  "name": "mirror",
+  "version": "0.0.1",
+  "description": "lib for array",
+  "main": "./src/index.ts",
+  "scripts": {
+    "test": "mocha -r ts-node/register test/**/*.ts",
+    "rimraf": "./node_modules/rimraf/bin.js",
+    "clean": "rimraf ./dist/*",
+    "compile": "npm run clean && tsc -p ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sessionid/mirror.git"
+  },
+  "keywords": [
+    "array"
+  ],
+  "author": "sessionid",
+  "license": "GPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/sessionid/mirror/issues"
+  },
+  "homepage": "https://github.com/sessionid/mirror#readme",
+  "devDependencies": {
+    "@types/chai": "^4.2.14",
+    "@types/mocha": "^8.2.0",
+    "chai": "^4.2.0",
+    "faker": "^5.1.0",
+    "mocha": "^8.2.1",
+    "rimraf": "^3.0.2",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}

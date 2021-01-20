@@ -27,11 +27,15 @@ it is `[0, 1, 1]`.
 
 `Array<T|DeepArray<T>>`, represents nested-array.
 
+### `Shape`
+
+`number[]`
+
 ## methods
 
 Checked checkbox means unit test covered.
 
-- [x] Basic
+- Basic
     - [x] shape: `(arr: any):number[]`
     - [x] count: `(arr: any):number`
     - [x] set: `<T>(arr:DeepArray<T>, coordinate: Coordinate, value:T):T`
@@ -39,7 +43,7 @@ Checked checkbox means unit test covered.
     - [x] clear: `(arr:any[], coordinate: Coordinate):boolean`
     - [x] rank: `(arr: any):number`
     - [x] isContainable: `(large:DeepArray, small:DeepArray):boolean`
-- [x] position
+- Position
     - [x] gt: `(c1:Coordinate, c2:Coordinate):boolean`
     - [x] geq: `(c1:Coordinate, c2:Coordinate):boolean`
     - [x] lt: `(c1:Coordinate, c2:Coordinate):boolean`
@@ -54,7 +58,7 @@ Checked checkbox means unit test covered.
     - [x] coordinateByWeightShape: `(index:number, shape:number[], weightList:number[]):Coordinate`
     - [x] coordinateByShape: `(index:number, shapes:number[]):Coordinate`
     - [x] coordinate: `(arr:number[], index:number):Coordinate`
-- [x] range
+- Range
     - [x] xrange
         - `(end: number): Generator<number>`
         - `(start: number, end?: number, step?: number): Generator<number>`
@@ -63,7 +67,7 @@ Checked checkbox means unit test covered.
         - `(end: number): number[]`
         - `(start: number, end: number, step?: number): number[]`
         - `(shape: number[], start?: Coordinate, end?: Coordinate): Coordinate[]`
-- [x] iterate
+- Iterate
     - [x] each/forEach: `<T>(arr: DeepArray<T>, fn: (item: T, coordinate: Coordinate, arr: DeepArray<T>) => void): void`
     - [x] eachBack/forEachBack: `<T>(arr: DeepArray<T>, fn: (item: T, coordinate: Coordinate, arr: DeepArray<T>) => void): void`
     - [x] some: `<T>(arr: DeepArray<T>, fn: (item: T, coordinate: Coordinate, arr: DeepArray<T>) => boolean): boolean`
@@ -74,11 +78,12 @@ Checked checkbox means unit test covered.
     - [x] reduceBack: `<T>(arr: DeepArray<T>, fn: (previousValue: any, item: T, coordinate: Coordinate, arr: DeepArray<T>) => any`
     - [x] arrayGenerator: `<T>(arr: DeepArray<T>): Generator<[item: T, coordinate: Coordinate, arr: DeepArray<T>]>`
     - [x] arrayGeneratorReverse: `(arr: DeepArray<T>): Generator<[item: T, coordinate: Coordinate, arr: DeepArray<T>]> `
-- [x] transform
+- Transform
     - [x] clone: `(arr: any[]): any[]`
     - [x] flat: `(arr: any[]): any[]`
     - [x] reshape: `<T>(arr: DeepArray<T>, shape: number[]): DeepArray<T>`
-- [x] create
+    - [x] split: `<T>(arr:DeepArray<T>, window:Shape):DeepArray<T>`
+- Create
     - [x] createSparse: `<T>(shape: number[], fill?: T): DeepArray<T|any>`
     - [x] createZeros: `(shape: number[]): DeepArray<number>`
     - [x] createRegular: `(dimension: number, fill: number = 0): DeepArray<number>`

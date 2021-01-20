@@ -1,4 +1,4 @@
-import { DeepArray } from './type';
+import { DeepArray, Shape } from './type';
 declare const flat: (arr: any[]) => any[];
 /**
  * reshape array
@@ -11,4 +11,10 @@ declare const reshape: <T>(arr: DeepArray<T>, shape: number[]) => DeepArray<T>;
  * @param arr array
  */
 declare const clone: (arr: any[]) => any[];
-export { clone, flat, reshape, };
+/**
+ * split array by the given window
+ * @param arr array
+ * @param window the size of the unit
+ */
+declare const split: <T>(arr: DeepArray<T>, window: Shape) => DeepArray<T>;
+export { clone, flat, reshape, split, };

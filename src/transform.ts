@@ -1,6 +1,7 @@
 import { xrange } from './range';
-import { shape } from './basic';
-import { DeepArray } from './type';
+import { shape, set, get } from './basic';
+import { createSparse } from './create';
+import { DeepArray, Shape } from './type';
 
 const flatSelf = (arr: any[]): any[] => {
     let stack = arr.slice();
@@ -31,9 +32,9 @@ const flat = Array.prototype.flat ? flatStd : flatSelf;
  * @param arr array
  * @param size piece size
  */
-const split = (arr: any[], size = 1): any[] => {
+const splitArr = (arr: any[], size = 1): any[] => {
     const ret = [];
-    for (let i = 0; i < arr.length; i += size) {
+    for(let i of xrange(0, arr.length, size)) {
         ret.push(arr.slice(i, i + size));
     }
     return ret;
@@ -46,8 +47,8 @@ const split = (arr: any[], size = 1): any[] => {
  */
 const reshape = <T>(arr: DeepArray<T>, shape: number[]): DeepArray<T> => {
     let ret = flat(arr);
-    for (let i = shape.length - 1; i > 0; i -= 1) {
-        ret = split(ret, shape[i]);
+    for (let i of xrange(shape.length - 1, 0, -1)) {
+        ret = splitArr(ret, shape[i]);
     }
     return ret;
 }
@@ -89,8 +90,29 @@ const clone = (arr: any[]) => {
         mrefs = cacheMRefs;
     }
     return ret;
+};
+
+/**
+ * split array by the given window
+ * @param arr array
+ * @param window the size of the unit
+ */
+const split = <T>(arr:DeepArray<T>, window:Shape):DeepArray<T> => {
+    const arrShape = shape(arr);
+    const end = window.map((v, idx) => Math.ceil(arrShape[idx] / v));
+    const ret = createSparse(end);
+    for(let coord of xrange(end)) {
+        const sparse = createSparse(window);
+        for(let subCoord of xrange(window)) {
+            const realCoord = coord.map((c, i) => c * window[i] + subCoord[i]);
+            const el = get(arr, realCoord);
+            el !== undefined && set(sparse, subCoord, el);
+        }
+        set(ret, coord, sparse);
+    }
+    return ret;
 }
 
 export {
-    clone, flat, reshape,
+    clone, flat, reshape, split,
 };

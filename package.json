@@ -1,6 +1,6 @@
 {
   "name": "mirror",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "lib for array",
   "main": "./dest/index.js",
   "scripts": {

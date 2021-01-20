@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.reshape = exports.flat = exports.clone = void 0;
+exports.split = exports.reshape = exports.flat = exports.clone = void 0;
 const range_1 = require("./range");
 const basic_1 = require("./basic");
+const create_1 = require("./create");
 const flatSelf = (arr) => {
     let stack = arr.slice();
     const res = [];
@@ -32,9 +33,9 @@ exports.flat = flat;
  * @param arr array
  * @param size piece size
  */
-const split = (arr, size = 1) => {
+const splitArr = (arr, size = 1) => {
     const ret = [];
-    for (let i = 0; i < arr.length; i += size) {
+    for (let i of range_1.xrange(0, arr.length, size)) {
         ret.push(arr.slice(i, i + size));
     }
     return ret;
@@ -46,8 +47,8 @@ const split = (arr, size = 1) => {
  */
 const reshape = (arr, shape) => {
     let ret = flat(arr);
-    for (let i = shape.length - 1; i > 0; i -= 1) {
-        ret = split(ret, shape[i]);
+    for (let i of range_1.xrange(shape.length - 1, 0, -1)) {
+        ret = splitArr(ret, shape[i]);
     }
     return ret;
 };
@@ -91,4 +92,25 @@ const clone = (arr) => {
     return ret;
 };
 exports.clone = clone;
+/**
+ * split array by the given window
+ * @param arr array
+ * @param window the size of the unit
+ */
+const split = (arr, window) => {
+    const arrShape = basic_1.shape(arr);
+    const end = window.map((v, idx) => Math.ceil(arrShape[idx] / v));
+    const ret = create_1.createSparse(end);
+    for (let coord of range_1.xrange(end)) {
+        const sparse = create_1.createSparse(window);
+        for (let subCoord of range_1.xrange(window)) {
+            const realCoord = coord.map((c, i) => c * window[i] + subCoord[i]);
+            const el = basic_1.get(arr, realCoord);
+            el !== undefined && basic_1.set(sparse, subCoord, el);
+        }
+        basic_1.set(ret, coord, sparse);
+    }
+    return ret;
+};
+exports.split = split;
 //# sourceMappingURL=transform.js.map

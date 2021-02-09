@@ -1,13 +1,14 @@
 {
   "name": "mirror",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "lib for array",
-  "main": "./dest/index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "mocha -r ts-node/register test/**/*.ts",
     "rimraf": "./node_modules/rimraf/bin.js",
-    "clean": "rimraf ./dest/*",
-    "compile": "npm run clean && tsc -p ./"
+    "clean": "rimraf ./dist/*",
+    "compile": "npm run clean && tsc -p ./",
+    "prepare": "npm run compile"
   },
   "repository": {
     "type": "git",

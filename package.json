@@ -2,7 +2,8 @@
   "name": "mirror",
   "version": "0.0.3",
   "description": "lib for array",
-  "main": "./dist/index.js",
+  "main": "dist/index.js",
+  "files": ["dist"],
   "scripts": {
     "test": "mocha -r ts-node/register test/**/*.ts",
     "build": "tsc",

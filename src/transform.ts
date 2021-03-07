@@ -24,8 +24,10 @@ const flatSelf = (arr: any[]): any[] => {
     return res.reverse();
 }
 
+// @ts-ignore
 const flatStd = (arr: any[]): any[] => arr.flat(Infinity);
-const flat = Array.prototype.flat ? flatStd : flatSelf;
+// @ts-ignore
+const flat = 'flat' in Array.prototype && typeof Array.prototype.flat === 'function' ? flatStd : flatSelf;
 
 /**
  * split array into small piece

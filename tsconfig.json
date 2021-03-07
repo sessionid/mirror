@@ -1,10 +1,15 @@
 {
     "compilerOptions": {
-        "module": "CommonJS",
-        "outDir": "dist",
+        "incremental": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "noImplicitReturns": true,
+        "importHelpers": true,
+        "module": "ESNext",
         "target": "ESNext",
-        "declaration": true,
-        "sourceMap": true
+        "moduleResolution": "node",
+        "sourceMap": true,
+        "baseUrl": "."
     },
-    "include": ["src/**/*"],
+    "include": ["./src/**/*.ts"]
 }
